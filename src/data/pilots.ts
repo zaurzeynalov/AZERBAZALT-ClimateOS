@@ -1,6 +1,12 @@
 export const pilots = {
   agdash: {
     id: "agdash",
+    soilAnalysis: {
+  baseline: [],
+  day60: [],
+  day90: [],
+  day180: [],
+},
     name: "Agdash Pilot",
     crop: "Rice",
     region: "Agdash",
