@@ -16,14 +16,14 @@ export default function PilotHero({
   status,
 }: PilotHeroProps) {
   return (
-    <div className="rounded-2xl border border-slate-700 bg-slate-800/60 p-8">
+    <div className="rounded-2xl border border-slate-700 bg-slate-800/60 p-6">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.25em] text-cyan-400">
-            Pilot Project
+            Operational Dashboard
           </p>
 
-          <h1 className="mt-2 text-4xl font-bold text-white">
+          <h1 className="mt-2 text-3xl font-bold text-white">
             {name}
           </h1>
 
@@ -36,12 +36,16 @@ export default function PilotHero({
           </div>
         </div>
 
-        <div className="rounded-full bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-400">
-          {status}
-        </div>
+       <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2">
+  <div className="h-2 w-2 rounded-full bg-emerald-400" />
+
+  <span className="text-sm font-semibold text-emerald-400">
+    Operational
+  </span>
+</div>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-6 border-t border-slate-700 pt-6">
+      <div className="mt-4 grid grid-cols-3 gap-6 border-t border-slate-700 pt-6">
         <div>
           <p className="text-xs uppercase tracking-wider text-slate-500">
             Area
