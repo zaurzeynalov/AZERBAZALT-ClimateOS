@@ -57,7 +57,7 @@ export default function AgdashPage() {
       <div className="rounded-2xl border border-slate-700 bg-slate-800/70 p-6">
 
         <h2 className="mb-5 text-xl font-semibold text-white">
-          Project Progress
+          Pilot Timeline
         </h2>
 
         <div className="space-y-4">
