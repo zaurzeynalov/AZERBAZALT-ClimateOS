@@ -10,16 +10,22 @@ export default function StatsCard({
   status,
 }: StatsCardProps) {
   return (
-    <div className="rounded-xl bg-white p-6 shadow">
-      <h3 className="text-sm text-slate-500">{title}</h3>
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+      <p className="text-sm font-medium uppercase tracking-wide text-slate-500">
+        {title}
+      </p>
 
-      <p className="mt-2 text-3xl font-bold text-slate-800">
+      <h2 className="mt-4 text-4xl font-bold text-slate-900">
         {value}
-      </p>
+      </h2>
 
-      <p className="mt-3 text-sm text-green-600">
-        {status}
-      </p>
+      <div className="mt-6 flex items-center">
+        <span className="mr-2 h-2 w-2 rounded-full bg-green-500"></span>
+
+        <span className="text-sm font-medium text-green-600">
+          {status}
+        </span>
+      </div>
     </div>
   );
 }

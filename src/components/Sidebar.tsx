@@ -1,74 +1,69 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { navigation } from "@/data/navigation";
+
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside className="w-64 min-h-screen bg-slate-900 text-white p-6">
-      <h2 className="text-2xl font-bold">
-        AZERBAZALT
-      </h2>
+      <h2 className="text-2xl font-bold">AZERBAZALT</h2>
 
-      <p className="mb-8 text-slate-400">
-        ClimateOS
-      </p>
+      <p className="mb-8 text-slate-400">ClimateOS</p>
 
       <nav className="space-y-2">
+        {navigation.map((item) => (
+          <div key={item.title}>
+            {item.href && (
+              <Link
+                href={item.href}
+                className={`block rounded-lg px-4 py-3 transition ${
+                  pathname === item.href
+                    ? "bg-blue-600 text-white"
+                    : "hover:bg-slate-800"
+                }`}
+              >
+                {item.title}
+              </Link>
+            )}
 
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Dashboard
-        </div>
+            {item.children && (
+              <>
+                <div className="rounded-lg px-4 py-3 font-medium">
+                  {item.title}
+                </div>
 
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Projects
-        </div>
+                <div className="ml-6 space-y-2 text-slate-400">
+                  {item.children.map((project) => (
+                    <div key={project.title}>
+                      <div className="font-medium text-white">
+                        ▼ {project.title}
+                      </div>
 
-        <div className="ml-6 space-y-2 text-slate-400">
-
-          <div>▼ Pilot 1</div>
-
-          <div className="ml-4 cursor-pointer hover:text-white">
-            Overview
+                      <div className="ml-4 mt-2 space-y-2">
+                        {project.children?.map((page) => (
+                          <Link
+                            key={page.title}
+                            href={page.href}
+                            className={`block transition ${
+                              pathname === page.href
+                                ? "text-blue-400 font-semibold"
+                                : "hover:text-white"
+                            }`}
+                          >
+                            {page.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
-
-          <div className="ml-4 cursor-pointer hover:text-white">
-            Ujar
-          </div>
-
-          <div className="ml-4 cursor-pointer hover:text-white">
-            Agdash
-          </div>
-
-          <div className="ml-4 cursor-pointer hover:text-white">
-            Khachmaz
-          </div>
-
-          <div className="ml-4 cursor-pointer hover:text-white">
-            Lankaran
-          </div>
-
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Laboratory
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          MRV
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Carbon Credits
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Documents
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Users
-        </div>
-
-        <div className="cursor-pointer rounded-lg px-4 py-3 hover:bg-slate-800">
-          Settings
-        </div>
-
+        ))}
       </nav>
     </aside>
   );
