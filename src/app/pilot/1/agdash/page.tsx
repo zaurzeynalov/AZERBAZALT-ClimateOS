@@ -3,6 +3,7 @@ import { pilots } from "@/data/pilots";
 import PilotKpiCard from "@/components/PilotKpiCard";
 import PilotHero from "@/components/PilotHero";
 import SoilAnalysisTable from "@/components/SoilAnalysisTable";
+import FieldPhotoGallery from "@/components/FieldPhotoGallery";
 
 export default function AgdashPage() {
   const pilot = pilots.agdash;
@@ -51,13 +52,15 @@ export default function AgdashPage() {
 
       </div>
 
-      {/* Pilot Timeline */}
-      <div className="rounded-2xl border border-slate-700 bg-slate-800/70 p-6">
       <SoilAnalysisTable />
 
-        <h2 className="mb-5 text-xl font-semibold text-white">
-          Pilot Timeline
-        </h2>
+<FieldPhotoGallery />
+{/* Pilot Timeline */}
+<div className="rounded-2xl border border-slate-700 bg-slate-800/70 p-6">
+
+  <h2 className="mb-5 text-xl font-semibold text-white">
+    Pilot Timeline
+  </h2>
 
         <div className="space-y-4">
 

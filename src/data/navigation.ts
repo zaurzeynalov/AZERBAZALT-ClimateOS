@@ -14,12 +14,12 @@ export const navigation = [
             href: "/pilot/1",
           },
           {
-            title: "Ujar",
-            href: "/pilot/1/ujar",
-          },
-          {
             title: "Agdash",
             href: "/pilot/1/agdash",
+          },
+          {
+            title: "Ujar",
+            href: "/pilot/1/ujar",
           },
           {
             title: "Khachmaz",
@@ -30,6 +30,10 @@ export const navigation = [
             href: "/pilot/1/lankaran",
           },
         ],
+      },
+      {
+        title: "Pilot 2",
+        children: [],
       },
     ],
   },
