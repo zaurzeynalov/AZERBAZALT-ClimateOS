@@ -36,6 +36,7 @@ const monitoringPhotos = [
 export default function FieldPhotoGallery() {
   const [isOpen, setIsOpen] = useState(false);
 const [category, setCategory] = useState("all");
+const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 const displayedPhotos =
   category === "application"
     ? applicationPhotos.map((name) => ({
@@ -62,6 +63,7 @@ const displayedPhotos =
         })),
       ];
   return (
+    <>
     <div className="mt-8 rounded-2xl border border-slate-700 bg-slate-800/70 p-6">
 
       <button
@@ -130,8 +132,9 @@ const displayedPhotos =
     className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900/40"
   >
     <img
-      src={photo.image}
-      alt={photo.title}
+  src={photo.image}
+  alt={photo.title}
+  onClick={() => setSelectedPhoto(photo.image)}
       className="h-56 w-full object-cover transition hover:scale-105 cursor-pointer"
     />
 
@@ -152,5 +155,24 @@ const displayedPhotos =
 )}
 
     </div>
+    {selectedPhoto && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+    onClick={() => setSelectedPhoto(null)}
+  >
+    <button
+      className="absolute top-6 right-8 text-5xl text-white hover:text-cyan-400"
+    >
+      ×
+    </button>
+
+    <img
+      src={selectedPhoto}
+      className="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    />
+  </div>
+)}
+</>
   );
 }
