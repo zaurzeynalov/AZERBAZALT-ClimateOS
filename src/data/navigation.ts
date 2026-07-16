@@ -3,6 +3,33 @@ export const navigation = [
     title: "Dashboard",
     href: "/",
   },
+
+  {
+    title: "Company",
+    children: [
+      {
+        title: "Corporate Profile",
+        children: [],
+      },
+      {
+        title: "Governance",
+        children: [],
+      },
+      {
+        title: "Policies",
+        children: [],
+      },
+      {
+        title: "Certifications",
+        children: [],
+      },
+      {
+        title: "Partners",
+        children: [],
+      },
+    ],
+  },
+
   {
     title: "Projects",
     children: [
@@ -37,26 +64,32 @@ export const navigation = [
       },
     ],
   },
+
   {
     title: "Laboratory",
     href: "/laboratory",
   },
+
   {
     title: "MRV",
     href: "/mrv",
   },
+
   {
     title: "Carbon Credits",
     href: "/carbon",
   },
+
   {
     title: "Documents",
     href: "#",
   },
+
   {
     title: "Users",
     href: "#",
   },
+
   {
     title: "Settings",
     href: "/settings",
