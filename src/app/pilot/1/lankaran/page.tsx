@@ -1,7 +1,6 @@
-export default function Page() {
-  return (
-    <div className="p-8 text-2xl font-semibold">
-      Page Under Construction
-    </div>
-  );
+import PilotPage from "@/components/PilotPage";
+import { pilots } from "@/data/pilots";
+
+export default function LankaranPage() {
+  return <PilotPage pilot={pilots.lankaran} />;
 }

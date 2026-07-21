@@ -10,6 +10,10 @@ export default function Sidebar() {
 
   const [projectsOpen, setProjectsOpen] = useState(true);
   const [openPilot, setOpenPilot] = useState<string | null>("Pilot 1");
+  const DEFAULT_PILOT = "Pilot 1";
+  const toggleProjects = () => {
+  setProjectsOpen(!projectsOpen);
+};
 
   return (
     <aside className="w-64 min-h-screen bg-slate-900 text-white p-6">
@@ -38,7 +42,7 @@ export default function Sidebar() {
             {item.children && (
               <>
                 <button
-                  onClick={() => setProjectsOpen(!projectsOpen)}
+                  onClick={toggleProjects}
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium hover:bg-slate-800 transition"
                 >
                   <span>{item.title}</span>

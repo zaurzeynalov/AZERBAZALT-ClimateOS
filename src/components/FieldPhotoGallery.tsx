@@ -1,52 +1,7 @@
 "use client";
 
 import { useState } from "react";
-const applicationPhotos = [
-  "01.jpeg",
-  "02.jpeg",
-  "03.jpeg",
-  "04.jpeg",
-  "05.jpeg",
-  "06.jpeg",
-];
 
-const monitoringPhotos = [
-  "01.jpeg",
-  "02.jpeg",
-  "03.jpeg",
-  "04.jpeg",
-  "05.jpeg",
-  "06.jpeg",
-  "07.jpeg",
-  "08.jpeg",
-  "09.jpeg",
-  "10.jpeg",
-  "11.jpeg",
-  "12.jpeg",
-  "13.jpeg",
-  "14.jpeg",
-  "15.jpeg",
-  "16.jpeg",
-  "17.jpeg",
-  "18.jpeg",
-  "19.jpeg",
-  "20.jpeg",
-  "21.jpeg",
-  "22.jpeg",
-  "23.jpeg",
-  "24.jpeg",
-  "25.jpeg",
-  "26.jpeg",
-  "27.jpeg",
-  "28.jpeg",
-  "29.jpeg",
-  "30.jpeg",
-  "31.jpeg",
-  "32.jpeg",
-  "33.jpeg",
-  "34.jpeg",
-  "35.jpeg",
-];
 type Props = {
   pilot: string;
 };
@@ -56,7 +11,7 @@ export default function FieldPhotoGallery({ pilot }: Props) {
   pilot === "ujar"
     ? "Ujar – Basalt Application"
     : "Basalt Application";
-
+ 
 const monitoringTitle =
   pilot === "ujar"
     ? "Ujar – Field Monitoring"
@@ -72,12 +27,35 @@ const monitoringDate =
     ? "10 Jul 2026"
     : "May–Jul 2026";
 
+const applicationPhotos = Array.from(
+  {
+    length:
+      pilot === "khachmaz"
+        ? 14
+        : pilot === "lankaran"
+        ? 1
+        : 6,
+  },
+  (_, i) => `${String(i + 1).padStart(2, "0")}.jpeg`
+);
 
+const monitoringPhotos = Array.from(
+  {
+    length:
+      pilot === "khachmaz"
+        ? 0
+        : pilot === "lankaran"
+        ? 0
+        : 35,
+  },
+  (_, i) => `${String(i + 1).padStart(2, "0")}.jpeg`
+);
   const [isOpen, setIsOpen] = useState(false);
 const [category, setCategory] = useState("all");
 const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 const displayedPhotos =
-  category === "application"
+
+category === "application"
     ? applicationPhotos.map((name) => ({
 image: `/images/${pilot}/application/${name}`,
 title: applicationTitle,

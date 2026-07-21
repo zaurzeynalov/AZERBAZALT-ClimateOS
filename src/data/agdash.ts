@@ -6,6 +6,8 @@ export const soilRows = [
   unit: "ppm",
   baseline: "47.3",
   day60: "48.1",
+  day90: "",
+ day180: "",
   delta: "+1.7%",
   assessment: "Stable",
 },

@@ -2,6 +2,7 @@ import PilotHero from "@/components/PilotHero";
 import PilotKpiCard from "@/components/PilotKpiCard";
 import SoilAnalysisTable from "@/components/SoilAnalysisTable";
 import FieldPhotoGallery from "@/components/FieldPhotoGallery";
+import CarbonCaptureCard from "@/components/CarbonCaptureCard";
 
 type PilotPageProps = {
   pilot: any;
@@ -20,6 +21,9 @@ export default function PilotPage({ pilot }: PilotPageProps) {
       />
 
       {/* Pilot KPIs */}
+      <div className="rounded-2xl border border-slate-700 bg-slate-800/70 p-6 text-white">
+  Carbon Capture Test
+</div>
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
