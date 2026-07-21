@@ -5,7 +5,25 @@ import { soilRows } from "@/data/agdash";
 
 export default function SoilAnalysisTable() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedPeriod, setSelectedPeriod] = useState("Baseline");
+  const periods = [
+  "Baseline",
+  "Day 60",
+  "Day 90",
+  "Day 180",
+];
+const getPeriodValue = (row: any) => {
+  switch (selectedPeriod) {
+    case "Baseline":
+      return row.baseline;
 
+    case "Day 60":
+      return row.day60;
+
+    default:
+      return "-";
+  }
+};
   return (
     <div className="rounded-2xl border border-slate-700 bg-slate-800/70 p-6">
 
@@ -38,11 +56,22 @@ export default function SoilAnalysisTable() {
 
           <button className="flex w-full items-center justify-between rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white">
 
-            <span>Baseline → Day 60</span>
+            <span>{selectedPeriod}</span>
 
             <span className="text-slate-500">▼</span>
 
           </button>
+          <div className="mt-2 flex flex-wrap gap-2">
+  {periods.map((period) => (
+    <button
+      key={period}
+      onClick={() => setSelectedPeriod(period)}
+      className="rounded-lg border border-slate-700 px-3 py-1 text-sm text-slate-300 hover:border-cyan-500 hover:text-white"
+    >
+      {period}
+    </button>
+  ))}
+</div>
 
         </div>
 
@@ -70,7 +99,7 @@ export default function SoilAnalysisTable() {
 
           <button className="flex w-full items-center justify-between rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white">
 
-            <span>AQTI</span>
+            <span>MoA VRI</span>
 
             <span className="text-slate-500">▼</span>
 
@@ -155,7 +184,7 @@ export default function SoilAnalysisTable() {
                     </td>
 
                     <td className="text-center text-white">
-                      {row.day60}
+                      {getPeriodValue(row)}
                     </td>
 
                     <td className="text-center font-medium text-cyan-400">

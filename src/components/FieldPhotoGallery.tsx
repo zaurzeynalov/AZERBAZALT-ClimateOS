@@ -32,34 +32,73 @@ const monitoringPhotos = [
   "19.jpeg",
   "20.jpeg",
   "21.jpeg",
+  "22.jpeg",
+  "23.jpeg",
+  "24.jpeg",
+  "25.jpeg",
+  "26.jpeg",
+  "27.jpeg",
+  "28.jpeg",
+  "29.jpeg",
+  "30.jpeg",
+  "31.jpeg",
+  "32.jpeg",
+  "33.jpeg",
+  "34.jpeg",
+  "35.jpeg",
 ];
-export default function FieldPhotoGallery() {
+type Props = {
+  pilot: string;
+};
+
+export default function FieldPhotoGallery({ pilot }: Props) {
+ const applicationTitle =
+  pilot === "ujar"
+    ? "Ujar – Basalt Application"
+    : "Basalt Application";
+
+const monitoringTitle =
+  pilot === "ujar"
+    ? "Ujar – Field Monitoring"
+    : "Field Monitoring";
+
+const applicationDate =
+  pilot === "ujar"
+    ? "12 May 2026"
+    : "26 Apr 2026";
+
+const monitoringDate =
+  pilot === "ujar"
+    ? "10 Jul 2026"
+    : "May–Jul 2026";
+
+
   const [isOpen, setIsOpen] = useState(false);
 const [category, setCategory] = useState("all");
 const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 const displayedPhotos =
   category === "application"
     ? applicationPhotos.map((name) => ({
-        image: `/images/agdash/application/${name}`,
-        title: "Basalt Application",
-        date: "26 Apr 2026",
+image: `/images/${pilot}/application/${name}`,
+title: applicationTitle,
+  date: applicationDate,
       }))
     : category === "monitoring"
     ? monitoringPhotos.map((name) => ({
-        image: `/images/agdash/monitoring/${name}`,
-        title: "Field Monitoring",
-        date: "May–Jul 2026",
+image: `/images/${pilot}/monitoring/${name}`,
+        title: monitoringTitle,
+date: monitoringDate,
       }))
     : [
-        ...applicationPhotos.map((name) => ({
-          image: `/images/agdash/application/${name}`,
-          title: "Basalt Application",
-          date: "26 Apr 2026",
+  ...applicationPhotos.map((name) => ({
+  image: `/images/${pilot}/application/${name}`,
+title: applicationTitle,
+date: applicationDate,
         })),
-        ...monitoringPhotos.map((name) => ({
-          image: `/images/agdash/monitoring/${name}`,
-          title: "Field Monitoring",
-          date: "May–Jul 2026",
+  ...monitoringPhotos.map((name) => ({
+  image: `/images/${pilot}/monitoring/${name}`,
+          title: monitoringTitle,
+date: monitoringDate,
         })),
       ];
   return (
@@ -76,8 +115,8 @@ const displayedPhotos =
           </h2>
 
           <p className="mt-1 text-sm text-slate-400">
-            Agdash Pilot • 6 Photos
-          </p>
+ {pilot.charAt(0).toUpperCase() + pilot.slice(1)} Pilot • {applicationPhotos.length + monitoringPhotos.length} Photos
+</p>
         </div>
 
         <span className="text-xl text-slate-400">
@@ -97,7 +136,7 @@ const displayedPhotos =
         : "bg-slate-700 text-slate-300 hover:bg-slate-600"
     }`}
   >
-    All (27)
+All ({applicationPhotos.length + monitoringPhotos.length})
   </button>
 
   <button
@@ -108,7 +147,7 @@ const displayedPhotos =
         : "bg-slate-700 text-slate-300 hover:bg-slate-600"
     }`}
   >
-    Application (6)
+    Application ({applicationPhotos.length})
   </button>
 
   <button
@@ -119,7 +158,7 @@ const displayedPhotos =
         : "bg-slate-700 text-slate-300 hover:bg-slate-600"
     }`}
   >
-    Monitoring (21)
+    Monitoring ({monitoringPhotos.length})
   </button>
 
 </div>
