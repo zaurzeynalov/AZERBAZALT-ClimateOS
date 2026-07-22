@@ -40,6 +40,8 @@ export const pilots = {
   name: "Agdash Pilot",
   crop: "Rice",
   region: "Agdash",
+  area: "1 ha",
+    status: "Monitoring",
   },
   khachmaz: {
     id: "khachmaz",

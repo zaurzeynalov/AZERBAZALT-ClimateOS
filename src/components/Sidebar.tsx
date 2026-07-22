@@ -8,12 +8,19 @@ import { navigation } from "@/data/navigation";
 export default function Sidebar() {
   const pathname = usePathname();
 
-  const [projectsOpen, setProjectsOpen] = useState(true);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    Company: false,
+    Projects: true,
+  });
+
   const [openPilot, setOpenPilot] = useState<string | null>("Pilot 1");
-  const DEFAULT_PILOT = "Pilot 1";
-  const toggleProjects = () => {
-  setProjectsOpen(!projectsOpen);
-};
+
+  const toggleSection = (title: string) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
 
   return (
     <aside className="w-64 min-h-screen bg-slate-900 text-white p-6">
@@ -24,7 +31,7 @@ export default function Sidebar() {
       <nav className="space-y-2">
         {navigation.map((item) => (
           <div key={item.title}>
-            {/* Normal menu items */}
+            {/* Simple menu items */}
             {item.href && (
               <Link
                 href={item.href}
@@ -38,68 +45,76 @@ export default function Sidebar() {
               </Link>
             )}
 
-            {/* Projects */}
+            {/* Expandable sections */}
             {item.children && (
               <>
                 <button
-                  onClick={toggleProjects}
+                  onClick={() => toggleSection(item.title)}
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium hover:bg-slate-800 transition"
                 >
                   <span>{item.title}</span>
 
-                  <span>{projectsOpen ? "▼" : "▶"}</span>
+                  <span>
+                    {openSections[item.title] ? "▼" : "▶"}
+                  </span>
                 </button>
 
-                {projectsOpen && (
+                {openSections[item.title] && (
                   <div className="ml-5 mt-2 space-y-2">
+                    {item.children.map((child) => (
+                      <div key={child.title}>
+                        {/* Projects → Pilot */}
+                        {item.title === "Projects" ? (
+                          <>
+                            <button
+                              onClick={() =>
+                                setOpenPilot(
+                                  openPilot === child.title
+                                    ? null
+                                    : child.title
+                                )
+                              }
+                              className="flex w-full items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-800"
+                            >
+                              <span>{child.title}</span>
 
-                    {item.children.map((pilot) => (
-                      <div key={pilot.title}>
+                              <span>
+                                {openPilot === child.title ? "▼" : "▶"}
+                              </span>
+                            </button>
 
-                        <button
-                          onClick={() =>
-                            setOpenPilot(
-                              openPilot === pilot.title ? null : pilot.title
-                            )
-                          }
-                          className="flex w-full items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-800"
-                        >
-                          <span>{pilot.title}</span>
-
-                          <span>
-                            {openPilot === pilot.title ? "▼" : "▶"}
-                          </span>
-                        </button>
-
-                        {openPilot === pilot.title && (
-                          <div className="ml-5 mt-2 space-y-2">
-
-                            {pilot.children?.length ? (
-                              pilot.children.map((page) => (
-                                <Link
-                                  key={page.title}
-                                  href={page.href}
-                                  className={`block rounded px-2 py-1 transition ${
-                                    pathname === page.href
-                                      ? "text-blue-400 font-semibold"
-                                      : "text-slate-400 hover:text-white"
-                                  }`}
-                                >
-                                  {page.title}
-                                </Link>
-                              ))
-                            ) : (
-                              <div className="px-2 py-1 text-sm text-slate-500 italic">
-                                No pilot sites yet
+                            {openPilot === child.title && (
+                              <div className="ml-5 mt-2 space-y-2">
+                                {child.children?.length ? (
+                                  child.children.map((page) => (
+                                    <Link
+                                      key={page.title}
+                                      href={page.href}
+                                      className={`block rounded px-2 py-1 transition ${
+                                        pathname === page.href
+                                          ? "text-blue-400 font-semibold"
+                                          : "text-slate-400 hover:text-white"
+                                      }`}
+                                    >
+                                      {page.title}
+                                    </Link>
+                                  ))
+                                ) : (
+                                  <div className="px-2 py-1 text-sm text-slate-500 italic">
+                                    No pilot sites yet
+                                  </div>
+                                )}
                               </div>
                             )}
-
+                          </>
+                        ) : (
+                          // Company items
+                          <div className="rounded px-3 py-2 text-slate-300 hover:bg-slate-800 cursor-pointer">
+                            {child.title}
                           </div>
                         )}
-
                       </div>
                     ))}
-
                   </div>
                 )}
               </>

@@ -33,7 +33,7 @@ const applicationPhotos = Array.from(
       pilot === "khachmaz"
         ? 14
         : pilot === "lankaran"
-        ? 1
+        ? 11
         : 6,
   },
   (_, i) => `${String(i + 1).padStart(2, "0")}.jpeg`

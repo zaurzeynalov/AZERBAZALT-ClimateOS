@@ -47,7 +47,7 @@ export default function PilotHero({
 
       <div className="mt-4 grid grid-cols-3 gap-6 border-t border-slate-700 pt-6">
         <div>
-          <p className="text-xs uppercase tracking-wider text-slate-500">
+          <p className="text-xs uppercase tracking-wider text-slate-300">
             Area
           </p>
 
@@ -57,7 +57,7 @@ export default function PilotHero({
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-wider text-slate-500">
+          <p className="text-xs uppercase tracking-wider text-slate-300">
             Crop
           </p>
 
@@ -67,7 +67,7 @@ export default function PilotHero({
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-wider text-slate-500">
+          <p className="text-xs uppercase tracking-wider text-slate-300">
             Region
           </p>
 
